@@ -1,0 +1,8 @@
+FROM python:3.9.13
+COPY ./requirements.txt /fastapi_deploy/
+COPY ./server.py /fastapi_deploy/
+COPY ./shipping_estimate_model.pkl /fastapi_deploy/
+WORKDIR /fastapi_deploy/
+RUN pip install -r requirements.txt
+EXPOSE 80
+CMD ["uvicorn","server:app","--host", "0.0.0.0", "--port", "80"]
